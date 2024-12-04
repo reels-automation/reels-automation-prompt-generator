@@ -9,3 +9,7 @@ test:
 	python -m pytest -vv --cov=tema
 
 all: install format lint test
+
+
+
+# kafka-topics.bat --create --bootstrap-server localhost:9092 --topic scripts_video
