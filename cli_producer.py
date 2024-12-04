@@ -1,4 +1,3 @@
-
 from quixstreams import Application
 from tema.tema_director import TemaDirector
 
