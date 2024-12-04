@@ -2,12 +2,12 @@
 
 import unicodedata
 import re
-from typing import Any
+
 
 class Tema:
-    """_summary_
-    """
-    def __init__(self, tema:str, personaje: str=None, author:str=None) -> None:
+    """_summary_"""
+
+    def __init__(self, tema: str, personaje: str = None, author: str = None) -> None:
         """_summary_
 
         Args:
@@ -18,8 +18,8 @@ class Tema:
         self.tema = self.__sanitize_attribute(tema)
         self.personaje = self.__sanitize_attribute(personaje)
         self.author = self.__sanitize_attribute(author)
-    
-    def __sanitize_attribute(self,attribute:str):
+
+    def __sanitize_attribute(self, attribute: str):
         """Sanitiza un input para que no contenga caracteres que no puedan ser parseados
 
         Args:
@@ -29,8 +29,12 @@ class Tema:
             (str):
         """
         if attribute != None:
-            result = unicodedata.normalize('NFKD', attribute).encode('ASCII', 'ignore').decode('ASCII')
-            result = re.sub(r'[^a-zA-Z0-9_-]', ' ', result)
+            result = (
+                unicodedata.normalize("NFKD", attribute)
+                .encode("ASCII", "ignore")
+                .decode("ASCII")
+            )
+            result = re.sub(r"[^a-zA-Z0-9_-]", " ", result)
             result = result.strip()
             return result
         return None
