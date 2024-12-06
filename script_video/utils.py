@@ -6,7 +6,7 @@ import re
 
 # NOTE: ollama must be running for this to work, start the ollama app or run `ollama serve`
 #model = os.environ.get("OLLAMA_VERSION") 
-model = "llama3.2:3b"
+model = "codellama:latest"
 
 def sanitize_attribute(attribute: str):
         """Sanitiza un input para que no contenga caracteres que no puedan ser parseados
@@ -39,13 +39,14 @@ def generate(prompt:str, context:list[str]) -> str:
     Returns:
         Response(str): El texto que generó el modelo de lenguaje
     """
-    r = requests.post('http://localhost:11434/api/generate',
+    r = requests.post('http://localhost:7869/api/generate',
                       json={
                           'model': model,
                           'prompt': prompt,
                           'context': context,
                       },
                       stream=True, timeout=100)
+    
     r.raise_for_status()
 
     full_response = ""  # To store the concatenated text response

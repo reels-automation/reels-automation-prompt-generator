@@ -1,3 +1,7 @@
+https://github.com/ollama/ollama/blob/main/docs/api.md#list-running-models
+https://docs.confluent.io/platform/current/installation/docker/operations/external-volumes.html#data-volumes-for-kafka-and-zk
+
+mary tts
 
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
 

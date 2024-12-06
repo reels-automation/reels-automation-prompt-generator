@@ -12,11 +12,12 @@ class ScriptVideoPersonajeGenerator(IScriptVideoGenerator):
         personaje = tema.personaje
         tema_script = tema.tema
         prompt_for_gpt = f"""
+
+            No incluyas encabezados ni aclaraciones sobre partes como "Introducción" o "Conclusión". El texto debe ser directo y listo para ser leído en voz alta por un bot de audio.
+
             Eres un modelo especializado en crear guiones para videos cortos de TikTok, y tu tarea es generar un guion educativo hablando como {personaje}. El tema que debes tratar es: "{tema_script}". El guion debe cumplir con lo siguiente:
 
             El HOOK inicial debe ser impactante y captar la atención del espectador desde el primer segundo. Usa preguntas intrigantes, datos curiosos o frases que generen intriga y emoción.
-
-            No incluyas encabezados ni aclaraciones sobre partes como "Introducción" o "Conclusión". El texto debe ser directo y listo para ser leído en voz alta por un bot de audio.
 
             El guion debe durar entre 60 y 90 segundos. Distribuye el contenido de manera uniforme, con frases claras, fluidas y fáciles de entender.
 
