@@ -16,7 +16,6 @@ def main():
 
     with app_consumer.get_consumer() as consumer:
         consumer.subscribe(["temas"])
-
         while True:
             msg = consumer.poll(1)
             if msg is None:
@@ -28,7 +27,7 @@ def main():
                 key = msg.key().decode("utf8")
                 msg_value = msg.value()
                 offset = msg.offset()
-                print(f"{offset} {key} {msg_value}")
+            #   print(f"{offset} {key} {msg_value}")
                 consumer.store_offsets(msg)
                 app_producer = Application(
                     broker_address="localhost:9092", loglevel="DEBUG"
@@ -38,6 +37,7 @@ def main():
                     msg_value = ast.literal_eval(msg_value.decode("utf-8"))
                     print(msg_value)
                     print("Started producing...")
+                   # print(msg_value["tema"]["personaje"])
 
                     topic = tema_director.build_tema_con_personaje_sin_author(
                         msg_value["tema"], msg_value["personaje"]
