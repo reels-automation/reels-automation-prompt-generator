@@ -6,7 +6,7 @@ import re
 
 # NOTE: ollama must be running for this to work, start the ollama app or run `ollama serve`
 #model = os.environ.get("OLLAMA_VERSION") 
-model = "codellama:latest"
+model = "llama3.2:latest"
 
 def sanitize_attribute(attribute: str):
         """Sanitiza un input para que no contenga caracteres que no puedan ser parseados
