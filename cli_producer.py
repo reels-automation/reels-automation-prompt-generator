@@ -17,6 +17,5 @@ def main():
                 topic="temas", key="temas_input_humano", value=str(topic.__dict__)
             )
 
-
 if __name__ == "__main__":
     main()

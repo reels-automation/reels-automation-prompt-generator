@@ -39,7 +39,7 @@ def generate(prompt:str, context:list[str]) -> str:
     Returns:
         Response(str): El texto que generó el modelo de lenguaje
     """
-    r = requests.post('http://localhost:7869/api/generate',
+    r = requests.post('http://ollama:11434/api/generate',
                       json={
                           'model': model,
                           'prompt': prompt,
