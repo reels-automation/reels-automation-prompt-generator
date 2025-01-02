@@ -20,15 +20,12 @@ create-topics:
 build-container:
 	docker build -t reels-automation-prompt-generator .
 
+install-ollama:
+	docker exec -it ollama sh -c "ollama pull llama3.2:latest"
 run-containers:
 	docker run --rm -it \
   --network reels-automation-docker-compose_local-kafka \
   --network reels-automation-docker-compose_ollama-docker \
   reels-automation-prompt-generator
 
-# docker-compose -f docker-compose-ollama-gpu.yaml up -d
-# docker compose up -d
-
 all: install format lint test
-
-# kafka-topics.bat --create --bootstrap-server localhost:9092 --topic scripts_video
