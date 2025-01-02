@@ -18,7 +18,7 @@ create-topics:
 	docker exec broker kafka-topics --create --topic subtitles-audios --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
 
 build-container:
-	sudo docker build -t reels-automation-prompt-generator .
+	docker build -t reels-automation-prompt-generator .
 
 run-containers:
 	docker run --rm -it \
