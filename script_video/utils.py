@@ -3,10 +3,13 @@ import requests
 import os 
 import unicodedata
 import re
+from dotenv import load_dotenv  
 
-# NOTE: ollama must be running for this to work, start the ollama app or run `ollama serve`
-#model = os.environ.get("OLLAMA_VERSION") 
-model = "llama3.2:latest"
+load_dotenv()
+
+model = os.getenv("OLLAMA_MODEL")
+OLLAMA_IP = os.getenv("OLLAMA_IP")
+
 
 def sanitize_attribute(attribute: str):
         """Sanitiza un input para que no contenga caracteres que no puedan ser parseados
@@ -39,7 +42,7 @@ def generate(prompt:str, context:list[str]) -> str:
     Returns:
         Response(str): El texto que generó el modelo de lenguaje
     """
-    r = requests.post('http://ollama:11434/api/generate',
+    r = requests.post(OLLAMA_IP,
                       json={
                           'model': model,
                           'prompt': prompt,
@@ -64,6 +67,6 @@ def generate(prompt:str, context:list[str]) -> str:
             raise Exception(body['error']) 
 
         if body.get('done', False):
-            full_response = sanitize_attribute(full_response)
+            #full_response = sanitize_attribute(full_response)
             return full_response  # Return the full response as text
 

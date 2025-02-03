@@ -19,7 +19,7 @@ create-topics:
 	docker exec broker kafka-topics --create --topic audio_homero --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1	
 
 build-container:
-	docker build -t reels-automation-prompt-generator .
+	docker build --no-cache -t reels-automation-prompt-generator .
 
 install-ollama:
 	docker exec -it ollama sh -c "ollama pull llama3.2:latest"

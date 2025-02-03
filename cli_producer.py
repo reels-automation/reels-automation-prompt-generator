@@ -13,6 +13,7 @@ def main():
             tema = input("Ingresa un tema \n")
             personaje = input("Ingresa un personaje \n")
             topic = tema_director.build_tema_con_personaje_sin_author(tema, personaje)
+            print(topic)
             producer.produce(
                 topic="temas", key="temas_input_humano", value=str(topic.__dict__)
             )

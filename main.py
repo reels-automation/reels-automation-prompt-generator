@@ -1,12 +1,15 @@
+import os
 import logging
 import ast
 import time
 from quixstreams import Application
 from script_video.script_video_personaje_generator import ScriptVideoPersonajeGenerator
 from tema.tema_director import TemaDirector
+from dotenv import load_dotenv  
 
 
 def main():
+    load_dotenv()
     tema_director = TemaDirector()
     retry_count = 0 
     
@@ -15,7 +18,7 @@ def main():
         try:
 
             app_consumer = Application(
-                broker_address="broker:9093",
+                broker_address=os.getenv("KAFKA_BROKER"),
                 loglevel="DEBUG",
                 consumer_group="temas_reader",
                 auto_offset_reset="latest",
@@ -37,20 +40,21 @@ def main():
                     #   print(f"{offset} {key} {msg_value}")
                         consumer.store_offsets(msg)
                         app_producer = Application(
-                            broker_address="broker:9093", loglevel="DEBUG"
+                            broker_address=os.getenv("KAFKA_BROKER"), loglevel="DEBUG"
                         )
                         with app_producer.get_producer() as producer:
 
                             msg_value = ast.literal_eval(msg_value.decode("utf-8"))
                             print(msg_value)
                             print("Started producing...")
-                        # print(msg_value["tema"]["personaje"])
 
                             topic = tema_director.build_tema_con_personaje_sin_author(
                                 msg_value["tema"], msg_value["personaje"]
                             )
                             script_generator = ScriptVideoPersonajeGenerator()
+                            
                             prompt = script_generator.crear_prompt(topic)
+
                             script_video = script_generator.generar_script_video(
                                 prompt, topic.__dict__
                             )
@@ -59,9 +63,10 @@ def main():
                                 key="Ai Scripts",
                                 value=str(script_video.__dict__),
                             )
+                            logging.info(f"Producing: {script_video.__dict__}")
                             logging.info("Produced. Sleeping..")
         
-        except Exception as ex:
+        except ValueError as ex:
             print(f"Error: {ex}, retrying...")
             retry_count += 1
             time.sleep(5)
