@@ -13,12 +13,20 @@ def main():
     tema_director = TemaDirector()
     retry_count = 0 
     
+    environment = os.getenv("ENVIRONMENT")
+    
+    if environment == "DEVELOPMENT":
+        KAFKA_BROKER = os.getenv("KAFKA_BROKER")
+    else:
+        KAFKA_BROKER = os.getenv("KAFKA_BROKER_DOCKER")
+
+
     while retry_count < 5:
 
         try:
 
             app_consumer = Application(
-                broker_address=os.getenv("KAFKA_BROKER"),
+                broker_address=KAFKA_BROKER,
                 loglevel="DEBUG",
                 consumer_group="temas_reader",
                 auto_offset_reset="latest",
@@ -66,7 +74,7 @@ def main():
                             logging.info(f"Producing: {script_video.__dict__}")
                             logging.info("Produced. Sleeping..")
         
-        except ValueError as ex:
+        except Exception as ex:
             print(f"Error: {ex}, retrying...")
             retry_count += 1
             time.sleep(5)
