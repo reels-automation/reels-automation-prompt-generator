@@ -48,7 +48,7 @@ def main():
                     #   print(f"{offset} {key} {msg_value}")
                         consumer.store_offsets(msg)
                         app_producer = Application(
-                            broker_address=os.getenv("KAFKA_BROKER"), loglevel="DEBUG"
+                            broker_address=KAFKA_BROKER, loglevel="DEBUG"
                         )
                         with app_producer.get_producer() as producer:
 
