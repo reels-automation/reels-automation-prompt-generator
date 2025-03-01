@@ -6,7 +6,7 @@ from quixstreams import Application
 from script_video.script_video_personaje_generator import ScriptVideoPersonajeGenerator
 from tema.tema_director import TemaDirector
 from dotenv import load_dotenv  
-
+from message.message import MessageBuilder
 
 def main():
     load_dotenv()
@@ -53,25 +53,28 @@ def main():
                         with app_producer.get_producer() as producer:
 
                             msg_value = ast.literal_eval(msg_value.decode("utf-8"))
-                            print(msg_value)
+                            print("Msg Value: " , msg_value)
                             print("Started producing...")
 
-                            topic = tema_director.build_tema_con_personaje_sin_author(
-                                msg_value["tema"], msg_value["personaje"]
-                            )
+                            message_builder = MessageBuilder(msg_value["tema"])
+
+                            message = (message_builder.add_personaje(msg_value["personaje"])
+                                       .add_author(msg_value["author"]).build()
+                                       )
+                            
                             script_generator = ScriptVideoPersonajeGenerator()
                             
-                            prompt = script_generator.crear_prompt(topic)
+                            prompt = script_generator.crear_prompt(message)
 
-                            script_video = script_generator.generar_script_video(
-                                prompt, topic.__dict__
+                            message = script_generator.generar_script_video(
+                                prompt, message
                             )
                             producer.produce(
                                 topic="scripts_video",
                                 key="Ai Scripts",
-                                value=str(script_video.__dict__),
+                                value=str(message.to_dict()),
                             )
-                            logging.info(f"Producing: {script_video.__dict__}")
+                            logging.info(f"Producing: {message.to_dict()}")
                             logging.info("Produced. Sleeping..")
         
         except Exception as ex:

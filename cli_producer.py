@@ -1,21 +1,22 @@
 from quixstreams import Application
-from tema.tema_director import TemaDirector
-
+from message.message import MessageBuilder
 
 def main():
 
     app_producer = Application(broker_address="localhost:9092", loglevel="DEBUG")
 
-    tema_director = TemaDirector()
-
     with app_producer.get_producer() as producer:
         while True:
             tema = input("Ingresa un tema \n")
             personaje = input("Ingresa un personaje \n")
-            topic = tema_director.build_tema_con_personaje_sin_author(tema, personaje)
-            print(topic)
+
+            message_builder = MessageBuilder(tema)
+            message = (message_builder.add_personaje(personaje).build()) 
+
+            print(message.to_dict())
+
             producer.produce(
-                topic="temas", key="temas_input_humano", value=str(topic.__dict__)
+                topic="temas", key="temas_input_humano", value=str(message.to_dict())
             )
 
 if __name__ == "__main__":
