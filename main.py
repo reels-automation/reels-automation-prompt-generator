@@ -58,10 +58,22 @@ def main():
 
                             message_builder = MessageBuilder(msg_value["tema"])
 
-                            message = (message_builder.add_personaje(msg_value["personaje"])
-                                       .add_author(msg_value["author"]).build()
-                                       )
-                            
+                            message = (message_builder
+                            .add_personaje(msg_value["personaje"])
+                            .add_script(msg_value["script"])
+                            .add_tts_audio_name(msg_value["tts_audio_name"])
+                            .add_tts_audio_bucket(msg_value["tts_audio_bucket"])
+                            .add_subtitles_name(msg_value["subtitles_name"])
+                            .add_subtitles_bucket(msg_value["subtitles_bucket"])
+                            .add_author(msg_value["author"])
+                            .add_pitch(msg_value["pitch"])
+                            .add_tts_voice(msg_value["tts_voice"])
+                            .add_tts_rate(msg_value["tts_rate"])
+                            .add_pth_voice(msg_value["pth_voice"])
+                            .add_gameplay_name(msg_value["gameplay_name"])
+                            .build()
+                        )
+
                             script_generator = ScriptVideoPersonajeGenerator()
                             
                             prompt = script_generator.crear_prompt(message)

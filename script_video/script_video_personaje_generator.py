@@ -38,6 +38,11 @@ class ScriptVideoPersonajeGenerator(IScriptVideoGenerator):
         
         print()
         response = generate(prompt,context)
-        message.script = response         # i dont like this ...       
+        if len(message.author) > 0:
+            message.script = f"Gracias a mi amigo {message.author} por mandar tu sugerencia para el video. {response}" 
+        else:
+            message.script = response
+
+               
         return message
         

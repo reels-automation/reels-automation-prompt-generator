@@ -24,8 +24,6 @@ class MessageBuilder:
     def __init__(self, tema: str):
         self.message = Message(tema=tema)
 
-    
-    
     def add_personaje(self, personaje: str):
         self.message.personaje = sanitize_attribute(personaje)
         return self
