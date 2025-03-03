@@ -70,6 +70,7 @@ def main():
                             .add_tts_voice(msg_value["tts_voice"])
                             .add_tts_rate(msg_value["tts_rate"])
                             .add_pth_voice(msg_value["pth_voice"])
+                            .add_instagram_account(msg_value["instagram_account"])
                             .add_gameplay_name(msg_value["gameplay_name"])
                             .build()
                         )

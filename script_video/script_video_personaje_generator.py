@@ -16,8 +16,6 @@ class ScriptVideoPersonajeGenerator(IScriptVideoGenerator):
 
     Empieza el guion saludando como {personaje}
 
-
-
     El guion debe durar entre 60 y 90 segundos. Distribuye el contenido de manera uniforme, con frases claras, fluidas y fáciles de entender. Cada tanto, incluye frases interactivas para motivar a los espectadores a interactuar. IMPORTANTE: ESTAS FRASES NO DEBEN SER LO PRIMERO DEL GUION. Deja espacio para algo de introducción y luego incluye estas frases:  
     - Dale like para más videos como este.  
     - Mándale este video a tu amigo que necesita saber esto.  
@@ -25,11 +23,12 @@ class ScriptVideoPersonajeGenerator(IScriptVideoGenerator):
     - Guarda este video para recordarlo después.  
 
     Recorda agregar frases de {personaje} cada tanto para hacer que el texto sea intersenate. Sin embargo, trata de mantener el texto informativo y con un tono formal.
+    Hace  UN CHISTE de {personaje} en el guion para que el guion sea memorable y se recuerde ya que los chistes aumentan la memoria a largo plazo. 
 
     Finaliza con una despedida breve y amigable, dejando una sensación positiva. No uses caracteres especiales como asteriscos, paréntesis o comillas. Mantén el texto limpio y directo para que pueda ser procesado por un conversor de texto a voz. Limítate a 130 palabras por minuto para que el video sea fluido y fácil de seguir."""
         
         return prompt_for_gpt
-#    Hace  UN CHISTE de {personaje} en el guion para que el guion sea memorable y se recuerde ya que los chistes aumentan la memoria a largo plazo. 
+
 
     def generar_script_video(self,prompt: str, message: Message, context:list=[]) -> Message:
         
