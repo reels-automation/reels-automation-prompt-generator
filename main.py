@@ -4,6 +4,7 @@ import ast
 import time
 from quixstreams import Application
 from script_video.script_video_personaje_generator import ScriptVideoPersonajeGenerator
+from script_video.script_video_messi_generator import ScriptVideoMessiGenerator
 from tema.tema_director import TemaDirector
 from dotenv import load_dotenv  
 from message.message import MessageBuilder
@@ -74,8 +75,11 @@ def main():
                             .add_gameplay_name(msg_value["gameplay_name"])
                             .build()
                         )
-
-                            script_generator = ScriptVideoPersonajeGenerator()
+                            
+                            if msg_value["pth_voice"] == "LIONEL MESSI":
+                                script_generator = ScriptVideoMessiGenerator()
+                            else:
+                                script_generator = ScriptVideoPersonajeGenerator()
                             
                             prompt = script_generator.crear_prompt(message)
 
