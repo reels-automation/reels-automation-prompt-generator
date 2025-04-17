@@ -80,12 +80,17 @@ def main():
                                 script_generator = ScriptVideoMessiGenerator()
                             else:
                                 script_generator = ScriptVideoPersonajeGenerator()
-                            
-                            prompt = script_generator.crear_prompt(message)
 
-                            message = script_generator.generar_script_video(
-                                prompt, message
-                            )
+                            if len(message.script) <= 0:
+                                prompt = script_generator.crear_prompt(message)
+
+                                message = script_generator.generar_script_video(
+                                    prompt, message
+                                )
+
+                            if len(message.tema) <= 0:
+                                message.tema = f"tema_at_{time.time()}"
+                            
                             producer.produce(
                                 topic="scripts_video",
                                 key="Ai Scripts",
