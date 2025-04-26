@@ -6,9 +6,6 @@ import re
 from dotenv import load_dotenv  
 
 load_dotenv()
-
-model = os.getenv("OLLAMA_MODEL")
-
 environment = os.getenv("ENVIRONMENT")
     
 if environment == "DEVELOPMENT":
@@ -35,7 +32,7 @@ def sanitize_attribute(attribute: str):
     return None
     
 
-def generate(prompt:str, context:list[str]) -> str:
+def generate(prompt:str, context:list[str], model:str) -> str:
     """Genera un prompt de Ollama
 
     Args:

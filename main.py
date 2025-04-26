@@ -60,23 +60,23 @@ def main():
                             message_builder = MessageBuilder(msg_value["tema"])
 
                             message = (message_builder
+                            .add_usuario(msg_value["usuario"])
+                            .add_idioma(msg_value["idioma"])
                             .add_personaje(msg_value["personaje"])
                             .add_script(msg_value["script"])
-                            .add_tts_audio_name(msg_value["tts_audio_name"])
-                            .add_tts_audio_bucket(msg_value["tts_audio_bucket"])
-                            .add_subtitles_name(msg_value["subtitles_name"])
-                            .add_subtitles_bucket(msg_value["subtitles_bucket"])
+                            .add_audio_item(msg_value["audio_item"])
+                            .add_subtitle_item(msg_value["subtitle_item"])
                             .add_author(msg_value["author"])
-                            .add_pitch(msg_value["pitch"])
-                            .add_tts_voice(msg_value["tts_voice"])
-                            .add_tts_rate(msg_value["tts_rate"])
-                            .add_pth_voice(msg_value["pth_voice"])
-                            .add_instagram_account(msg_value["instagram_account"])
                             .add_gameplay_name(msg_value["gameplay_name"])
+                            .add_background_music(msg_value["background_music"])
+                            .add_images(msg_value["images"])
+                            .add_random_images(msg_value["random_images"])
+                            .add_random_amount_images(msg_value["random_amount_images"])
+                            .add_gpt_model(msg_value["gpt_model"])
                             .build()
                         )
                             
-                            if msg_value["pth_voice"] == "LIONEL MESSI":
+                            if message.get_pth_voice() == "LIONEL MESSI":
                                 script_generator = ScriptVideoMessiGenerator()
                             else:
                                 script_generator = ScriptVideoPersonajeGenerator()
