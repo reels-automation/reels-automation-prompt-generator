@@ -9,7 +9,11 @@ class ScriptVideoMessiGenerator(IScriptVideoGenerator):
         self.prompt = None
     
     def crear_prompt(self, message: Message):
+
+
         prompt_for_gpt = f"""
+
+        Write in this language. Your whole homer response should be in this language. : {message.idioma}
         
         Quiero que expliques el siguiente tema: {message.tema} de la manera más clara y concisa posible para el guion de mi video de TikTok. No incluyas encabezados ni aclaraciones como 'Introducción' o 'Conclusión'. El texto debe ser directo y listo para ser leído en voz alta por un bot de audio.  
 
