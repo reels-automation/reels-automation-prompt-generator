@@ -47,7 +47,6 @@ class ScriptVideoPersonajeGenerator(IScriptVideoGenerator):
         Finish with a brief and friendly goodbye, leaving a positive feeling. Do not use special characters like asterisks, parentheses, or quotation marks. Keep the text clean and direct so it can be processed by a text-to-speech converter. Stick to around 130 words per minute to ensure the video is smooth and easy to follow.
         """
 
-
         if message.idioma == "es":
             prompt_for_gpt = spanish_prompt
         elif message.idioma == "en":
