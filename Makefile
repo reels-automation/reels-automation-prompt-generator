@@ -27,18 +27,26 @@ install-ollama:
 	docker exec -it ollama sh -c "ollama pull llama3.2:latest"
 
 python-run:
+	cp .env.development .env
 	sed -i '/^ENVIRONMENT/d' .env
 	echo 'ENVIRONMENT=DEVELOPMENT' >> .env
 	bash -c 'source env/bin/activate && python main.py'
+
+python-run-prod:
+	cp .env.production .env
+	sed -i '/^ENVIRONMENT/d' .env
+	echo 'ENVIRONMENT=DEVELOPMENT' >> .env
+	bash -c 'source env/bin/activate && python main.py'
+
 
 run-containers:
 	sed -i '/^ENVIRONMENT/d' .env
 	echo 'ENVIRONMENT=DEPLOYMENT' >> .env
 	
 	docker run --rm -it \
-  --network reels-automation-docker-compose_local-kafka \
-  --network reels-automation-docker-compose_ollama-docker \
-  reels-automation-prompt-generator
+	--network reels-automation-docker-compose_local-kafka \
+	--network reels-automation-docker-compose_ollama-docker \
+	reels-automation-prompt-generator
 
 build-run: build-container run-containers
 
