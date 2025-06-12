@@ -17,11 +17,7 @@ class ScriptVideoPersonajeGenerator(IScriptVideoGenerator):
 
         Empieza el guion saludando como {personaje}
 
-        El guion debe durar entre 60 y 90 segundos. Distribuye el contenido de manera uniforme, con frases claras, fluidas y fáciles de entender. Cada tanto, incluye frases interactivas para motivar a los espectadores a interactuar. IMPORTANTE: ESTAS FRASES NO DEBEN SER LO PRIMERO DEL GUION. Deja espacio para algo de introducción y luego incluye estas frases:  
-        - Dale like para más videos como este.  
-        - Mándale este video a tu amigo que necesita saber esto.  
-        - Comenta [frase característica de {personaje}].  
-        - Guarda este video para recordarlo después.  
+        El guion debe durar entre 60 y 90 segundos. Distribuye el contenido de manera uniforme, con frases claras, fluidas y fáciles de entender. 
 
         Recorda agregar frases de {personaje} cada tanto para hacer que el texto sea intersenate. Sin embargo, trata de mantener el texto informativo y con un tono formal.
         Hace  UN CHISTE de {personaje} en el guion para que el guion sea memorable y se recuerde ya que los chistes aumentan la memoria a largo plazo. 
