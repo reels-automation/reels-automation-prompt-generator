@@ -42,9 +42,14 @@ run-containers:
 	echo 'ENVIRONMENT=DEPLOYMENT' >> .env
 	
 	docker run --rm -it \
-	--network reels-automation-docker-compose_local-kafka \
-	--network reels-automation-docker-compose_ollama-docker \
-	reels-automation-prompt-generator
+	--network local-kafka \
+	--network ollama-docker \
+	-e KAFKA_BROKER=broker:9092 \
+	-e OLLAMA_MODEL=mistral:latest \
+	-e OLLAMA_IP=http://localhost:11434/api/generate \
+	-e OLLAMA_IP_DOCKER=http://ollama:11434 \
+	-e KAFKA_BROKER_DOCKER=broker:9092 \
+		reels-automation-prompt-generator
 
 build-run: build-container run-containers
 
