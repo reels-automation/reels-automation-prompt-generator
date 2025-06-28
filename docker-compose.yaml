@@ -1,16 +1,20 @@
+networks:
+  local-kafka:
+    external: true
+  ollama-docker:
+    external: true
+
 services:
   prompt-generator:
-    build: .
+    image: reels-automation-prompt-generator
+    networks:
+      - local-kafka
+      - ollama-docker
     environment:
       KAFKA_BROKER: ${KAFKA_BROKER}
       OLLAMA_MODEL: ${OLLAMA_MODEL}
       OLLAMA_IP: ${OLLAMA_IP}
       KAFKA_BROKER_DOCKER: ${KAFKA_BROKER_DOCKER}
       OLLAMA_IP_DOCKER: ${OLLAMA_IP_DOCKER}
-    restart: unless-stopped
-    networks:
-      - local-kafka
-
-networks:
-  local-kafka:
-    external: true
+    stdin_open: true   
+    tty: true         
