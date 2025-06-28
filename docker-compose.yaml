@@ -1,0 +1,16 @@
+services:
+  prompt-generator:
+    build: .
+    environment:
+      KAFKA_BROKER: ${KAFKA_BROKER}
+      OLLAMA_MODEL: ${OLLAMA_MODEL}
+      OLLAMA_IP: ${OLLAMA_IP}
+      KAFKA_BROKER_DOCKER: ${KAFKA_BROKER_DOCKER}
+      OLLAMA_IP_DOCKER: ${OLLAMA_IP_DOCKER}
+    restart: unless-stopped
+    networks:
+      - local-kafka
+
+networks:
+  local-kafka:
+    external: true

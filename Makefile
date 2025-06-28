@@ -19,8 +19,6 @@ create-topics:
 	docker exec broker kafka-topics --create --topic audio_homero --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1	
 
 build-container:
-	sed -i '/^ENVIRONMENT/d' .env
-	echo 'ENVIRONMENT=DEPLOYMENT' >> .env
 	docker build --no-cache -t reels-automation-prompt-generator .
 
 install-ollama:
