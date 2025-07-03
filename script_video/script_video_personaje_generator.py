@@ -1,8 +1,5 @@
 from script_video.i_script_video_generator import IScriptVideoGenerator
-from script_video.script_video import ScriptVideo
-from script_video.script_video_director import ScriptVideoDirector
-from message.message import Message, MessageBuilder
-from script_video.utils import generate
+from message.message import Message
  
 class ScriptVideoPersonajeGenerator(IScriptVideoGenerator):
     def __init__(self):
@@ -54,18 +51,5 @@ class ScriptVideoPersonajeGenerator(IScriptVideoGenerator):
         return prompt_for_gpt
 
 
-    def generar_script_video(self,prompt: str, message: Message, context:list=[]) -> Message:
-        
-        if not prompt:
-            raise ValueError("No se pasó ningun prompt para generar el script")
-        
-        print()
-        response = generate(prompt,context, message.gpt_model)
-        if len(message.author) > 0:
-            message.script = f"Gracias a mi amigo {message.author} por mandar tu sugerencia para el video. {response}" 
-        else:
-            message.script = response
 
-               
-        return message
         
