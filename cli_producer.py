@@ -22,7 +22,7 @@ def main():
             images=""
             random_images="True"
             random_amount_images="1"
-            add_gpt_model="mistral:3b"
+            add_gpt_model="llama3.2:3b"
             input("Procesar un nuevo video: \n")
             message_builder = MessageBuilder(tema)
             message = (message_builder.add_personaje(personaje)

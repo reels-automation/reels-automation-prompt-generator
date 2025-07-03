@@ -21,3 +21,4 @@ def sanitize_attribute(attribute: str):
         result = result.strip()
         return result
     return None
+
