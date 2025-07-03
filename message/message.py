@@ -22,6 +22,7 @@ class Message:
         return self.__dict__
     
     def get_pth_voice(self):
+        print("AAA", self.audio_item)
         return self.audio_item[0]["pth_voice"]
 
 class MessageBuilder:
