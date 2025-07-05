@@ -6,7 +6,7 @@ networks:
 
 services:
   prompt-generator:
-    image: reels-automation-prompt-generator
+    build: .
     networks:
       - local-kafka
       - ollama-docker
